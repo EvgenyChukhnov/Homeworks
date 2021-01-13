@@ -1,0 +1,42 @@
+.right-values {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
+input, button {
+  display: block;
+}
+
+input {
+  margin: 5px;
+  border-radius: 4px;
+  height: 20px;
+  border: 2px solid gray;
+}
+
+button {
+  margin-top: 20px;
+}
+
+fieldset {
+  display: inline;
+}
+
+.display-none {
+  display: none;
+}
+
+.result {
+  font-size: 30px;
+  color: rgb(83, 81, 81);
+  padding: 40px;
+}
+
+.alarm {
+  border-color: red;
+}
+
+.red {
+  color: red;
+}

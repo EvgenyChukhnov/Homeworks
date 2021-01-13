@@ -1,0 +1,38 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+form {
+  margin: 30px 0 8px 30px;
+}
+
+.field {
+  padding: 8px;
+}
+
+button {
+  margin: 9px 27px;
+}
+
+.toggleColor {
+  background-color: black;
+}
+
+.recipient {
+  box-sizing: content-box;
+  margin-left: 57px;
+  line-height: 0;
+}
+.element {
+  box-sizing: border-box;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  border: 1px solid rgb(167, 161, 161);
+  display: inline-block;
+}
+
+.hide {
+  display: none;
+}
