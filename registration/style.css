@@ -1,7 +1,12 @@
-.right-values {
+.auxiliary-buttons {
   position: absolute;
   top: 0;
   right: 20px;
+}
+
+.auxiliary-buttons button {
+  margin: 10px;
+  width: 100px;
 }
 
 input, button {
@@ -39,4 +44,8 @@ fieldset {
 
 .red {
   color: red;
+}
+
+.green {
+  color: green;
 }

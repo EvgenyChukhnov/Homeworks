@@ -1,4 +1,5 @@
-var inputRightValues = document.querySelector('.right-values');
+var inputRightValues = document.getElementById('right-values'),
+    clearLS = document.getElementById('ls-clear');
 
 inputRightValues.onclick = function() {
   var emailInput = document.querySelector('#email-id'),
@@ -7,12 +8,15 @@ inputRightValues.onclick = function() {
   emailInput.value = 'eve.holt@reqres.in';
   passwInput.value = 'pistol';
 };
+
+clearLS.onclick = function() {
+  localStorage.clear();
+}
 //-------------------------------------------------------------------------------------------------
 var form = document.getElementsByName('registration')[0],
     button = document.getElementsByTagName('button')[0],
-    lsUserId = '',
-    divResult = document.createElement('div');
-    divResult.classList.add('result', 'display-none');
+    lsUserId = '';
+
     
   document.addEventListener("DOMContentLoaded", checkLS);
   form.addEventListener('submit', sendAuthRequest); 
@@ -36,7 +40,7 @@ function sendAuthRequest(e) {
       throw { name: 'Error', message: JSON.parse(this.response).error };
       };
     } catch (error) {
-      showMessage(error.message);
+      showErrorMessage(error.message);
       clearInputs();
     }
   	if (statusType === 2) {
@@ -50,28 +54,38 @@ function sendAuthRequest(e) {
           showMessage('User ' + localStorage.getItem('lsUserId') + ' has already been registered');
         };
   		} catch(error) {
-  			console.log(error.name + ' - ' + error.message);
+  			showErrorMessage(error.message);
 	  	};
   	};
   };
   xhr.onerror = function() {
     try {
       var statusType = +String(this.status)[0];
-      console.log(statusType);
       if (statusType === 0) {
         throw { name: 'DNS Error', message: 'there is something wrong with the address' };
       };
     } catch (error) { 
-      showMessage(error.message);
+      showErrorMessage(error.message);
     };
   };
 };
+var divResult = document.createElement('div');
+
+function Message(str){
+  divResult.classList.add('result');
+  divResult.innerHTML = str;
+  document.body.appendChild(divResult);
+}
 
 function showMessage(str) {
-  divResult.innerHTML = str;
-  divResult.classList.remove('display-none');
-  document.body.appendChild(divResult);
+  Message.call(this, str);
+  divResult.classList.add('green');
 };
+
+function showErrorMessage(str) {
+  Message.call(this, str);
+  divResult.classList.add('red');
+}
 
 function checkLS() {
   if (localStorage.getItem('lsUserId')) {
