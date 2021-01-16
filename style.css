@@ -3,6 +3,20 @@ body {
   padding: 0;
 }
 
+.translate {
+  margin: 15px;
+}
+
+.translate span {
+  display: block;
+  margin: 7px 0;
+  font-size: 20px;
+}
+
+.translate select {
+  width: 100px;
+}
+
 .homeworkLinks {
   margin: 70px;
 }

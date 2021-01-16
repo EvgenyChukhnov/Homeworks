@@ -4,17 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+  <title data-translate="page-title">Homeworks</title>
 </head>
 <body>
+  <header>
+    <div class="translate">
+        <form id="language">
+        <span data-translate="choose-language"><b>Choose language:</b></span>
+        <select name="language">
+          <option value="english" selected>English</option>
+          <option value="russian">Русский</option>
+          <option value="hebrew">עברית</option>
+        </select>
+       </form>
+    </div>
+  </header>
   <main>
     <div class="homeworkLinks">
         <ul>
-            <li><a href="table/table.html">ТАБЛИЦА</a></li>
-            <li><a href="links/practical_task_13_upg.html">ССЫЛКИ</a></li>
-            <li><a href="chess_desc/chess_desc.html">ШАШЕЧКИ</a></li>
-            <li><a href="users_list/index.html">СПИСОК</a></li>
-            <li><a href="registration/index.html">Регистрация</a></li>
+            <li><a href="table/table.html" data-translate="table">Table</a></li>
+            <li><a href="links/practical_task_13_upg.html" data-translate="links">Links</a></li>
+            <li><a href="chess_desc/chess_desc.html" data-translate="checkers">checkers</a></li>
+            <li><a href="users_list/index.html" data-translate="list">User List</a></li>
+            <li><a href="registration/index.html" data-translate="registration">Registration</a></li>
         </ul>
     </div>
 </main>
