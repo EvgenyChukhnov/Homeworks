@@ -11,7 +11,7 @@ var container = document.getElementById('container'),
   container.appendChild(firstPar);
   container.appendChild(secondPar);
 
-  document.addEventListener("DOMContentLoaded", localStorageClear);
+  document.addEventListener("DOMContentLoaded", sessionStorageClear);
   button.addEventListener('click', addClick);
 
   secondPar.onclick = function (event) {
@@ -21,12 +21,12 @@ var container = document.getElementById('container'),
       event.preventDefault();
 
     if (target.tagName === 'A') {
-      if (!localStorage.getItem(target.text)) {
-        localStorage.setItem(target.text, JSON.stringify({path: target.origin}));
+      if (!sessionStorage.getItem(target.text)) {
+        sessionStorage.setItem(target.text, JSON.stringify({path: target.origin}));
         target.href = '#';
         alert('link was saved!');
         } else {
-            pathFromLS = JSON.parse(localStorage.getItem(target.text));
+            pathFromLS = JSON.parse(sessionStorage.getItem(target.text));
             alert(pathFromLS.path) 
         };
     
@@ -47,6 +47,6 @@ function addClick () {
   if(counter == 5) {counter = 0;};
 };
 
-function localStorageClear() {
-  localStorage.clear();
+function sessionStorageClear() {
+  sessionStorage.clear();
 };

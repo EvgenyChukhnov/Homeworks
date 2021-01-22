@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>Timer</title>
+</head>
+  <div class="main">
+    <div class="timer" data-timer-state="initial">
+      <div class="spacer hidden"></div>
+      <button id="start" data-button-controls>Start</button>
+      <div class="show-time">
+        <div class="hour" data-hour>00</div>
+        <div class="min" data-mins>00</div>
+        <div class="sec" data-seconds>00</div>
+      </div>
+      <button id="reset" class="hidden">Reset</button>
+      <button id="save" class="hidden">Save</button>
+      <div class="show-results"></div>
+    </div>
+  </div>
+<body>
+<script src="script.js"></script>
+</body>
+</html>

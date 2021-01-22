@@ -14,7 +14,6 @@ clearLS.onclick = function() {
 }
 //-------------------------------------------------------------------------------------------------
 var form = document.getElementsByName('registration')[0],
-    button = document.getElementsByTagName('button')[0],
     lsUserId = '';
 
     
@@ -27,14 +26,15 @@ function sendAuthRequest(e) {
       email = document.getElementById('email-id');
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'https://reqres.in/api/register');
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({
-    "email": email.value,
-    "password": password.value
-  }));
-  xhr.onload = function() {
-  	var statusType = +String(this.status)[0];
+    xhr.open('POST', 'https://reqres.in/api/register');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+      "email": email.value,
+      "password": password.value
+    }));
+    xhr.onload = function() {
+    var statusType = +String(this.status)[0];
+    
     try {
       if (statusType !== 2) {
       throw { name: 'Error', message: JSON.parse(this.response).error };
