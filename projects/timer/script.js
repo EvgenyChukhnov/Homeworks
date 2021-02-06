@@ -86,7 +86,7 @@ function onLoadFunction() {
 
 function resetFunction() {
   clearInterval(mainCount);
-  localStorage.clear();
+  localStorage.removeItem('keyloader');
   hideButtonsSaveReset();
   timer.dataset.timerState = 'initial';
   buttonStart.textContent = 'Start';
@@ -98,7 +98,7 @@ function resetFunction() {
   zMiliSeconds = 0;
   zSeconds = 0;
   zMinutes = 0;
-  showTime(ms, sec, min);
+  showTime();
 }
 
 function mainCountFunction() {
