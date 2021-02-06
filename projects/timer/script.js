@@ -21,7 +21,7 @@ window.addEventListener('load', onLoadFunction);
 buttonStart.addEventListener('click', mainLogicSwitch);
 buttonReset.addEventListener('click', resetFunction);
 
-window.addEventListener('beforeunload',function() {
+window.addEventListener('beforeunload', () => {
   
   let insertElements = divShowResults.getElementsByClassName('insert');
   let arr = [];
@@ -30,21 +30,23 @@ window.addEventListener('beforeunload',function() {
   }
 
   keyLoaderIndicator = {
-    counter: counter,
-    ms: ms,
-    sec: sec,
-    min: min,
-    zMiliSeconds: zMiliSeconds,
-    zSeconds: zSeconds,
-    zMinutes: zMinutes,
+    counter,
+    ms,
+    sec,
+    min,
+    zMiliSeconds,
+    zSeconds,
+    zMinutes,
     dataset: timer.dataset.timerState,
     labels: arr,
   }
 
-  if (timer.dataset.timerState !== 'initial') { localStorage.setItem('keyloader', JSON.stringify(keyLoaderIndicator)) }
+  if (timer.dataset.timerState !== 'initial') {
+    localStorage.setItem('keyloader', JSON.stringify(keyLoaderIndicator))
+  }
 });
 
-buttonSave.onclick = function () {
+buttonSave.onclick = () => {
   let insert = document.createElement('div');
   insert.classList.add('insert');
   insert.innerHTML = `${counter++}) ${min} : ${sec} : ${ms}`;
@@ -54,14 +56,17 @@ buttonSave.onclick = function () {
 function onLoadFunction() {
   if (localStorage.getItem('keyloader')) {
     let z = JSON.parse(localStorage.getItem('keyloader'));
-    let arrAflerReload = [];
+    let arrAfterReload = [];
     showButtonsSaveReset();
     timer.dataset.timerState = z.dataset;
     if ( timer.dataset.timerState === 'started') {
-    mainCount = setInterval(mainCountFunction, 10);
+      mainCount = setInterval(mainCountFunction, 10);
     buttonStart.textContent = 'Stop';
     } else if (timer.dataset.timerState === 'stopped') {
       buttonStart.textContent = 'Run';
+    } else if (timer.dataset.timerState === 'finished') {
+      resetFunction();
+      return;
     }
 
     counter = +z.counter;
@@ -71,12 +76,12 @@ function onLoadFunction() {
     zMiliSeconds = z.zMiliSeconds;
     zSeconds = z.zSeconds;
     zMinutes = z.zMinutes;
-    arrAflerReload = z.labels;
+    arrAfterReload = z.labels;
     
-    for (let i = 0; i < arrAflerReload.length; i++) {
+    for (let i = 0; i < arrAfterReload.length; i++) {
       let insert = document.createElement('div');
       insert.classList.add('insert');
-      insert.innerHTML = `${arrAflerReload[i]}`;
+      insert.innerHTML = `${arrAfterReload[i]}`;
       divShowResults.appendChild(insert);
     }
 
@@ -90,6 +95,8 @@ function resetFunction() {
   hideButtonsSaveReset();
   timer.dataset.timerState = 'initial';
   buttonStart.textContent = 'Start';
+  buttonStart.classList.remove('hidden');
+  spacer.classList.add('hidden');
   while(divShowResults.firstElementChild) { divShowResults.firstChild.remove() }
   counter = 1;
   ms = '00';
@@ -128,7 +135,12 @@ function mainCountFunction() {
 
   if (zMinutes === 60) { 
     ms = '00';
-    return resetFunction();
+    timer.dataset.timerState = 'finished';
+    clearInterval(mainCount);
+    buttonSave.classList.add('hidden');
+    buttonStart.classList.add('hidden');
+    buttonStart.classList.add('hidden');
+    spacer.classList.remove('hidden');
   }
   
   showTime();
@@ -164,6 +176,7 @@ function showTime() {
 }
 
 function showButtonsSaveReset() {
+  spacer.classList.add('hidden');
   buttonReset.classList.remove('hidden');
   buttonSave.classList.remove('hidden');
 }
